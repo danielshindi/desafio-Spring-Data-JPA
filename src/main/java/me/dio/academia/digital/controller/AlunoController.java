@@ -30,9 +30,23 @@ public class AlunoController {
     }
 
     @GetMapping
+    public List<Aluno> getAlunos(@RequestParam(value = "id", required = false) Long id,
+                                 @RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento,
+                                 @RequestParam(value = "bairro", required = false) String bairro) {
+
+        if (id == null) {
+            return getAll(dataDeNascimento, bairro);
+        }
+        return List.of(get(id));
+    }
+
     public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento,
                               @RequestParam(value = "bairro", required = false) String bairro) {
         return service.getAll(dataDeNascimento, bairro);
+    }
+
+    public Aluno get(@RequestParam(value = "id") Long id) {
+        return service.get(id);
     }
 
     @PutMapping

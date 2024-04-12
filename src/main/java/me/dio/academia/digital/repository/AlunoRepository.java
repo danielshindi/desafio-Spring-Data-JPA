@@ -10,12 +10,6 @@ import java.util.List;
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
-//    /**
-//     *
-//     * @param id: id do aluno
-//     * @return o aluno com o respectivo id
-//     */
-//    Aluno findById(Long id);
 
     /**
      *
