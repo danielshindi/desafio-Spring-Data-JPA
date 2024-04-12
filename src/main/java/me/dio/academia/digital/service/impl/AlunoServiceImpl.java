@@ -37,13 +37,24 @@ public class AlunoServiceImpl implements IAlunoService {
     }
 
     @Override
-    public List<Aluno> getAll(String dataDeNascimento) {
+    public List<Aluno> getAll(String dataDeNascimento, String bairro) {
 
-        if (dataDeNascimento == null) {
+        if (dataDeNascimento == null && bairro == null) {
+            // Se nenhum parâmetro for passado, retorna todos os alunos.
             return repository.findAll();
-        } else {
+        } else if (dataDeNascimento != null) {
             LocalDate localDate = LocalDate.parse(dataDeNascimento, JavaTimeUtils.LOCAL_DATE_FORMATTER);
-            return repository.findByDataDeNascimento(localDate);
+            if (bairro != null) {
+                // Se for passada a dataDeNascimento e bairro como parâmetros, retorna todos os alunos que
+                // condizem com esses parâmetros.
+                return repository.findByDataDeNascimentoAndBairro(localDate, bairro);
+            } else {
+                // Se for passado apenas dataDeNascimento, buscar por esse parâmetro.
+                return repository.findByDataDeNascimento(localDate);
+            }
+        } else {
+            // Se for passado apenas o bairro, buscar por esse parâmetro.
+            return repository.findByBairro(bairro);
         }
     }
 

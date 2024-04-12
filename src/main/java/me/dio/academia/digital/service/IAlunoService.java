@@ -23,10 +23,15 @@ public interface IAlunoService {
   Aluno get(Long id);
 
   /**
-   * Retorna todos os Alunos que estão no banco de dados.
+   * Retorna todos os alunos que condizem com os parâmetros passados.
+   * Retorna todos os Alunos que estão no banco de dados se nenhum parâmetro for passado.
+   *
+   * @param dataDeNascimento: Data de nascimento do aluno a ser buscada.
+   * @param bairro: Bairro do aluno a ser buscado.
+   *
    * @return - Uma lista os Alunos que estão salvas no DB.
    */
-  List<Aluno> getAll(String dataDeNascimento);
+  List<Aluno> getAll(String dataDeNascimento, String bairro);
 
   /**
    * Atualiza o Aluno.

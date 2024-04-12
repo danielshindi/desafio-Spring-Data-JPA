@@ -30,8 +30,9 @@ public class AlunoController {
     }
 
     @GetMapping
-    public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento) {
-        return service.getAll(dataDeNascimento);
+    public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento,
+                              @RequestParam(value = "bairro", required = false) String bairro) {
+        return service.getAll(dataDeNascimento, bairro);
     }
 
     @PutMapping
