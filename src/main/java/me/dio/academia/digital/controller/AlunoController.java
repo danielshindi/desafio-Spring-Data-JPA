@@ -54,4 +54,9 @@ public class AlunoController {
         return service.update(id, form);
     }
 
+    @DeleteMapping
+    public void delete(@RequestParam Long id) {
+        service.delete(id);
+    }
+
 }
